@@ -13,10 +13,10 @@ function ProductList({ onHomeClick }) {
   useEffect(() => {
     const updatedAddedToCart = {};
     cart.forEach((item) => {
-        updatedAddedToCart[item.name] = true;
+      updatedAddedToCart[item.name] = true;
     });
     setAddedToCart(updatedAddedToCart);
-  }, [cart])  
+  }, [cart]);
 
   const plantsArray = [
     {
@@ -301,11 +301,11 @@ function ProductList({ onHomeClick }) {
     setShowCart(false);
   };
 
-//   const handleAddItem = (item) => {
-//     dispatch(addItem(item));
-//   };
+  //   const handleAddItem = (item) => {
+  //     dispatch(addItem(item));
+  //   };
   const calculateTotalQuantity = () => {
-    return cart ? cart.reduce((total, item) => total += item.quantity, 0) : 0;
+    return cart ? cart.reduce((total, item) => (total += item.quantity), 0) : 0;
   };
   const handleAddToCart = (product) => {
     dispatch(addItem(product));
@@ -337,7 +337,15 @@ function ProductList({ onHomeClick }) {
           <div>
             {" "}
             <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
-              <h1 className="cart" style={{display: "flex", flexDirection: "column", alignItems: "center", gap: "0"}}>
+              <h1
+                className="cart"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "0",
+                }}
+              >
                 <span
                   style={{
                     fontSize: "1.5rem",
@@ -376,9 +384,9 @@ function ProductList({ onHomeClick }) {
         <div className="product-grid">
           {plantsArray.map((category, index) => (
             <div key={index}>
-              <h1>
-                <div>{category.category}</div>
-              </h1>
+              <div className="" style={{padding: "2rem 0"}}>
+                <h1 style={{textDecoration: "underline", textAlign: "center"}}>{category.category}</h1>
+              </div>
               <div className="product-list">
                 {category.plants.map((plant, plantIndex) => (
                   <div className="product-card" key={plantIndex}>
