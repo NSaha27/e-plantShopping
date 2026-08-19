@@ -11,6 +11,13 @@ export const CartSlice = createSlice({
       const existingItem = state.items.find((item) => item.name === name);
       if (existingItem) {
         existingItem.quantity++;
+        state.items.map(item => {
+          if(item.name === existingItem.name){
+            return existingItem;
+          }else{
+            return item;
+          }
+        })
       } else {
         state.items.push({ name, image, cost, quantity: 1 });
       }
@@ -23,6 +30,13 @@ export const CartSlice = createSlice({
       const itemToUpdate = state.items.find((item) => item.name === name);
       if (itemToUpdate) {
         itemToUpdate.quantity = quantity;
+        state.items.map(item => {
+          if(item.name === name){
+            return itemToUpdate;
+          }else{
+            return item;
+          }
+        })
       }
     },
   },
