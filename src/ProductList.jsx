@@ -333,7 +333,16 @@ function ProductList({ onHomeClick }) {
           <div>
             {" "}
             <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
-              <h1 className="cart">
+              <h1 className="cart" style={{display: "flex", flexDirection: "column", alignItems: "center", gap: "0"}}>
+                <span
+                  style={{
+                    fontSize: "1.5rem",
+                    fontWeight: "700",
+                    color: "#fff",
+                  }}
+                >
+                  {Object.entries(addedToCart).length}
+                </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 256 256"
@@ -382,8 +391,22 @@ function ProductList({ onHomeClick }) {
                     <button
                       className="product-button"
                       onClick={() => handleAddToCart(plant)}
+                      disabled={
+                        Object.keys(addedToCart).includes(plant.name)
+                          ? true
+                          : false
+                      }
+                      style={{
+                        backgroundColor: Object.keys(addedToCart).includes(
+                          plant.name
+                        )
+                          ? "#808080"
+                          : "#4CAF50",
+                      }}
                     >
-                      Add to Cart
+                      {Object.keys(addedToCart).includes(plant.name)
+                        ? "Added to Cart"
+                        : "Add to Cart"}
                     </button>
                   </div>
                 ))}
