@@ -297,7 +297,7 @@ function ProductList({ onHomeClick }) {
     dispatch(addItem(item));
   };
   const calculateTotalQuantity = () => {
-    return cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
+    return cart ? cart.reduce((total, item) => total += item.quantity, 0) : 0;
   };
   const handleAddToCart = (product) => {
     dispatch(addItem(product));
@@ -341,7 +341,7 @@ function ProductList({ onHomeClick }) {
                     color: "#fff",
                   }}
                 >
-                  {Object.entries(addedToCart).length}
+                  {calculateTotalQuantity()}
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
